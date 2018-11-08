@@ -1,0 +1,234 @@
+<!--
+  Generated template for the SpecificLight page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-toolbar *ngIf="lightService.specificLight.sms != ''" color="primary">
+        <ion-title>
+            Light #{{lightId}}
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close"></ion-icon>
+
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+
+    <ion-toolbar *ngIf="lightService.specificLight.sms == ''" color="danger">
+        <ion-title>
+            Light #{{lightId}}
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Cancel</span>
+                <ion-icon name="md-close"></ion-icon>
+
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-grid style="padding: 0px;">
+        <ion-row>
+            <ion-col style="padding: 0px;">
+                <sebm-google-map [latitude]="lightService.specificLight.location.lat" [longitude]="lightService.specificLight.location.lng" [zoom]="18">
+
+                    <div *ngIf="lightService.specificLight.sms == ''">
+                        <sebm-google-map-marker *ngFor="let marker of lightService.userMasterLights;" [latitude]="lightService.specificLight.location.lat" [longitude]="lightService.specificLight.location.lng"></sebm-google-map-marker>
+                    </div>
+                    <div *ngIf="lightService.specificLight.sms != ''">
+                        <sebm-google-map-marker *ngFor="let marker of lightService.userMasterLights;" [latitude]="lightService.specificLight.location.lat" [longitude]="lightService.specificLight.location.lng" [iconUrl]="'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></sebm-google-map-marker>
+                    </div>
+                </sebm-google-map>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-list>
+        <ion-list-header color="dark">
+            Light Weather Data
+        </ion-list-header>
+
+        <ion-grid padding>
+
+
+            <ion-row>
+                <ion-col style="text-align: center;">
+                    <p  (click)="changeTemp()" color="primary" style="font-size: 50px; margin:0;">{{temp}}°<span style="font-size:28px">{{tempSet}}</span></p>
+                    <p><b>Temp</b></p>
+                </ion-col>
+                <ion-col style="text-align: center;">
+                    <p color="primary" style="font-size: 45px; margin:0;">{{humidity}}%</p>
+                    <p><b>hum</b></p>
+                </ion-col>
+                <ion-col style="text-align: center;">
+                    <p color="primary" style="font-size: 50px; margin:0;">{{pressure}}</p>
+                    <p><b>mmHg</b></p>
+                </ion-col>
+                <ion-col style="text-align: center;">
+                    <p color="primary" style="font-size: 32px; margin:0;">{{rain}}</p>
+                    <p><b>Rain</b></p>
+                </ion-col>
+            </ion-row>
+
+            <button ion-button block style="margin-top:15px;" (click)="updateWeather()">Update Weather Data</button>
+        </ion-grid>
+
+
+        <ion-list-header color="dark">
+            Enable Emergency Mode
+        </ion-list-header>
+
+
+        <ion-list>
+            <ion-item-divider color="light">
+                Slide item to the left for mode information.</ion-item-divider>
+
+            <ion-item-sliding>
+                <ion-item (click)="enable('Construction')">
+
+                    <ion-icon name="warning" item-left></ion-icon>
+                    <h2>Construction</h2>
+                </ion-item>
+                <ion-item-options side="left">
+
+                    <button ion-button color="secondary" (click)="info('construction')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" (click)="info('construction')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+
+            <ion-item-sliding>
+                <ion-item (click)="enable('Accident')">
+
+                    <ion-icon name="car" item-left></ion-icon>
+                    <h2>Accident</h2>
+                </ion-item>
+                <ion-item-options side="left">
+                    <button ion-button color="secondary" (click)="info('accident')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" (click)="info('accident')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+
+            <ion-item-sliding>
+                <ion-item (click)="enable('Evacuation')">
+
+                    <ion-icon name="body" item-left></ion-icon>
+                    <h2>Evacuation</h2>
+                </ion-item>
+                <ion-item-options side="left">
+                    <button ion-button color="secondary" (click)="info('evacuation')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" (click)="info('evacuation')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+            <ion-item-sliding>
+                <ion-item (click)="enable('Normal')">
+
+                    <ion-icon name="cloud" item-left></ion-icon>
+                    <h2>Active</h2>
+                </ion-item>
+                <ion-item-options side="left">
+                    <button ion-button color="secondary" (click)="info('normal')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="secondary" (click)="info('normal')">
+                        <ion-icon name="information-circle"></ion-icon>
+                        Info
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+
+
+        </ion-list>
+        <ion-list-header color="dark">
+            Set Manual Color Change
+        </ion-list-header>
+
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2></ion-col>
+                <ion-col col-8>
+                    <div style="width: 100%; min-height: 200px; position: relative; background-color: white; border: 1px solid black">
+                        <div style="width: 100%; height: 100%; position: absolute; z-index: 1;" [ngStyle]="{'background-color' : myDynamicColor}">
+                            <div style="padding: 10px">
+                                <h3 style="text-align: center;" [ngStyle]="{'color' : easyView}">Red: <b>{{ colorToPercent(red) }}%</b></h3>
+                                <h3 style="text-align: center;" [ngStyle]="{'color' : easyView}">Blue: <b>{{ colorToPercent(blue) }}%</b></h3>
+                                <h3 style="text-align: center;" [ngStyle]="{'color' : easyView}">Green: <b>{{ colorToPercent(green) }}%</b></h3>
+                                <h3 style="text-align: center;" [ngStyle]="{'color' : easyView}">Intensity: <b>{{ rawOp }}%</b></h3>
+                            </div>
+                        </div>
+                    </div>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-item>
+            <ion-range type="range" [(ngModel)]="red" (ionChange)="setColor(red, 'red')" min="0" max="255" color="danger">
+                <ion-icon range-left small name="arrow-dropleft" color="danger"></ion-icon>
+                <ion-icon range-right name="arrow-dropright-circle" color="danger"></ion-icon>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-range type="range" [(ngModel)]="green" (ionChange)="setColor(green, 'green')" min="0" max="255" color="secondary">
+
+                <ion-icon range-left small name="arrow-dropleft" color="secondary"></ion-icon>
+                <ion-icon range-right name="arrow-dropright-circle" color="secondary"></ion-icon>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-range type="range" [(ngModel)]="blue" (ionChange)="setColor(blue, 'blue')" min="0" max="255">
+
+                <ion-icon range-left small name="arrow-dropleft" color="primary"></ion-icon>
+                <ion-icon range-right name="arrow-dropright-circle" color="primary"></ion-icon>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-range type="range" [(ngModel)]="rawOp" (ionChange)="setColor(rawOp, 'opacity')" min="1" max="100" color="dark">
+                <ion-icon range-left small name="moon"></ion-icon>
+                <ion-icon range-right name="sunny"></ion-icon>
+            </ion-range>
+        </ion-item>
+
+        <div padding>
+            <button ion-button block color="danger" (click)="enable('Manual Color')">Manually Set Color Scheme</button>
+        </div>
+    </ion-list>
+</ion-content>

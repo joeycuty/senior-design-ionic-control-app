@@ -1,0 +1,23 @@
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar color="primary">
+        	<ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+    	<ion-list>
+    		<button ion-item icon-left (click)="onLoad(rootPage)">
+    		<ion-icon name="book"></ion-icon>
+    		Home - Options</button>
+    		<button ion-item icon-left (click)="onLoad(signinPage)">
+    		<ion-icon name="log-in"></ion-icon>
+    		Sign In</button>
+    		<button ion-item icon-left (click)="onSignout()">
+    		<ion-icon name="log-in"></ion-icon>
+    		Sign Out</button>
+    	</ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #nav ></ion-nav>

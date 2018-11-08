@@ -1,0 +1,42 @@
+<!--
+  Generated template for the Signin page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Register</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-lg-2 col-md-1></ion-col>
+            <ion-col col-12 col-sm-12 col-md-10 col-lg-8>
+                <form #f="ngForm" (ngSubmit)="onSignup(f)" style="margin-top: 65px;">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label fixed>E-Mail</ion-label>
+                            <ion-input type="email" ngModel name="email" required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label fixed>Password</ion-label>
+                            <ion-input type="password" ngModel name="password" required [minlength]="6"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label fixed>Confirm</ion-label>
+                            <ion-input type="password" ngModel name="conpassword" required [minlength]="6"></ion-input>
+                        </ion-item>
+
+                    </ion-list>
+                    <button ion-button block type="submit" [disabled]="!f.valid">Sign Up</button>
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

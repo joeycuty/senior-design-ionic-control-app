@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button icon-only menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>WeatherSight</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color: #f7f7f7;">
+    <h3 style="margin-top: 20px;" text-center>Welcome to WeatherSight!</h3>
+    <p text-center>
+        Please select an option below or in the side menu to continue.
+    </p>
+
+    <ion-grid>
+        <ion-row class="card-background-page">
+            <ion-col col-lg-2 col-md-1></ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 col-lg-4>
+
+                <ion-card (click)="map()" style="cursor: pointer;">
+                    <img src="./img/viewlights.jpg" />
+                    <div class="card-title">View All Lights</div>
+                    <div class="card-subtitle">Click here to view all your lights.</div>
+                </ion-card>
+
+            </ion-col>
+            <ion-col col-12 col-sm-12 col-md-5 col-lg-4>
+
+                <ion-card (click)="newLight()" style="cursor: pointer;">
+                    <img src="./img/addlights.jpg" />
+                    <div class="card-title">Install New Light</div>
+                    <div class="card-subtitle">Click here to add new lights.</div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
